@@ -1,0 +1,13 @@
+12. Which of the following functions can help us to find the version of python that we are currently
+working on?
+a) sys.version(1)
+b) sys.version(0)
+c) sys.version()
+d) sys.version
+View Answer
+13. Python supports the creation of anonymous functions at runtime, using a construct called __________
+a) pi
+b) anonymous
+c) lambda
+d) none of the mentioned
+View Answer

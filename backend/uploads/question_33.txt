@@ -1,0 +1,12 @@
+36. What will be the output of the following Python program?
+def foo(x):
+ x[0] = ['def']
+ x[1] = ['abc']
+ return id(x)
+q = ['abc', 'def']
+print(id(q) == foo(q))
+a) Error
+b) None
+c) False
+d) True
+View Answer

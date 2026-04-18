@@ -1,0 +1,8 @@
+19. Which of the following is the truncation division operator in Python?
+a) |
+b) //
+c) /
+d) %
+View Answer
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/5/24

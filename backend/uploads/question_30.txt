@@ -1,0 +1,8 @@
+33. Which function is called when the following Python program is executed?
+f = foo()
+format(f)
+a) str()
+b) format()
+c) __str__()
+d) __format__()
+View Answer

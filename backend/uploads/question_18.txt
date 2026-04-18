@@ -1,0 +1,8 @@
+20. What will be the output of the following Python code?
+l=[1, 0, 2, 0, 'hello', '', []]
+print(list(filter(bool, l)))
+a) [1, 0, 2, ‘hello’, ”, []]
+b) Error
+c) [1, 2, ‘hello’]
+d) [1, 0, 2, 0, ‘hello’, ”, []]
+View Answer

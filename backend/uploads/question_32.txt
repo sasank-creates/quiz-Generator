@@ -1,0 +1,15 @@
+35. What will be the output of the following Python code?
+class tester:
+ def __init__(self, id):
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/9/24
+ self.id = str(id)
+ id="224"
+ 
+temp = tester(12)
+print(temp.id)
+a) 12
+b) 224
+c) None
+d) Error
+View Answer

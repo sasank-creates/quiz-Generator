@@ -1,0 +1,17 @@
+29. What will be the output of the following Python code?
+x = 'abcd'
+for i in x:
+ print(i.upper())
+a)
+a
+B
+C
+D
+b) a b c d
+c) error
+d)
+A
+B
+C
+D
+View Answer

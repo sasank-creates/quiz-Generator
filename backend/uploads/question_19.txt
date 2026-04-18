@@ -1,0 +1,6 @@
+21. Which of the following functions is a built-in function in python?
+a) factorial()
+b) print()
+c) seed()
+d) sqrt()
+View Answer

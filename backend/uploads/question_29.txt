@@ -1,0 +1,7 @@
+32. What will be the output of the following Python statement?
+print("a"+"bc")
+a) bc
+b) abc
+c) a
+d) bca
+View Answer

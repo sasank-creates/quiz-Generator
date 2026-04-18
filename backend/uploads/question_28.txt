@@ -1,0 +1,10 @@
+31. What will be the output of the following Python code snippet?
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/8/24
+for i in [1, 2, 3, 4][::-1]:
+ print(i, end=' ')
+a) 4 3 2 1
+b) error
+c) 1 2 3 4
+d) none of the mentioned
+View Answer

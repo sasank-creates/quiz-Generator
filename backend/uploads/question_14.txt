@@ -1,0 +1,6 @@
+16. What does pip stand for python?
+a) Pip Installs Python
+b) Pip Installs Packages
+c) Preferred Installer Program
+d) All of the mentioned
+View Answer

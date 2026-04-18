@@ -1,0 +1,6 @@
+14. What is the order of precedence in python?
+a) Exponential, Parentheses, Multiplication, Division, Addition, Subtraction
+b) Exponential, Parentheses, Division, Multiplication, Addition, Subtraction
+c) Parentheses, Exponential, Multiplication, Addition, Division, Subtraction
+d) Parentheses, Exponential, Multiplication, Division, Addition, Subtraction
+View Answer

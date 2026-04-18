@@ -1,0 +1,6 @@
+37. Which module in the python standard library parses options received from the command line?
+a) getarg
+b) getopt
+c) main
+d) os
+View Answer

@@ -1,0 +1,9 @@
+24. What will be the output of the following Python function?
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/6/24
+print(min(max(False,-3,-4), 2,7))
+a) -4
+b) -3
+c) 2
+d) False
+View Answer

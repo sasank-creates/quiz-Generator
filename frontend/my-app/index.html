@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Mechanical Flip Clock</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #1a1a1a;
+            --text-color: #f0f0f0;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --anim-speed: 0.6s;
+            --perspective: 400px;
+            --radius: 6px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: var(--font-family);
+            color: var(--text-color);
+        }
+
+        .clock {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        /* Grouping hours, minutes, seconds */
+        .unit-group {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* The Digit Container */
+        .flip-card {
+            position: relative;
+            width: 80px;
+            height: 120px;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            font-size: 85px;
+            font-weight: 700;
+            line-height: 120px;
+            text-align: center;
+            perspective: var(--perspective);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        /* Common styles for all half-panels */
+        .top, .bottom, .leaf-front, .leaf-back {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            overflow: hidden;
+            background-color: var(--card-bg);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        /* Top Halves */
+        .top, .leaf-front {
+            top: 0;
+            border-radius: var(--radius) var(--radius) 0 0;
+            z-index: 2;
+            background-image: linear-gradient(to bottom, #222, #1a1a1a);
+            border-bottom: 1px solid rgba(0,0,0,0.4);
+        }
+
+        /* Bottom Halves */
+        .bottom, .leaf-back {
+            bottom: 0;
+            border-radius: 0 0 var(--radius) var(--radius);
+            z-index: 1;
+            /* To show the bottom half of the text, we shift it up */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            background-image: linear-gradient(to top, #111, #1a1a1a);
+        }
+
+        /* Text alignment for bottom halves */
+        .bottom, .leaf-back {
+            line-height: 0; 
+        }
+
+        /* The Flipping Leaf (The Book Page) */
+        .leaf {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            z-index: 4;
+            transform-origin: bottom;
+            transition: transform var(--anim-speed) ease-in;
+            transform-style: preserve-3d;
+        }
+
+        .leaf-back {
+            transform: rotateX(-180deg);
+            z-index: 4;
+        }
+
+        /* Animation class triggered by JS */
+        .flipping .leaf {
+            transform: rotateX(-180deg);
+        }
+
+        /* Decorative Hinge Line */
+        .flip-card::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+
+        .separator {
+            font-size: 40px;
+            font-weight: 300;
+            opacity: 0.5;
+            padding-bottom: 10px;
+        }
+
+        /* Shadow Effects during flip */
+        .flipping .leaf-front {
+            animation: shadow-top var(--anim-speed) ease-in forwards;
+        }
+
+        @keyframes shadow-top {
+            0% { background-color: rgba(0,0,0,0); }
+            100% { background-color: rgba(0,0,0,0.4); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock">
+        <div class="unit-group" id="hour-group">
+            <div class="flip-card" data-digit="h1">
+                <div class="top">0</div>
+                <div class="bottom">0</div>
+                <div class="leaf"><div class="leaf-front">0</div><div class="leaf-back">0</div></div>
+            </div>
+            <div class="flip-card" data-digit="h2">
+                <div class="top">0</div>
+                <div class="bottom">0</div>
+                <div class="leaf"><div class="leaf-front">0</div><div class="leaf-back">0</div></div>
+            </div>
+        </div>
+
+        <div class="separator">:</div>
+
+        <div class="unit-group" id="min-group">
+            <div class="flip-card" data-digit="m1">
+                <div class="top">0</div>
+                <div class="bottom">0</div>
+                <div class="leaf"><div class="leaf-front">0</div><div class="leaf-back">0</div></div>
+            </div>
+            <div class="flip-card" data-digit="m2">
+                <div class="top">0</div>
+                <div class="bottom">0</div>
+                <div class="leaf"><div class="leaf-front">0</div><div class="leaf-back">0</div></div>
+            </div>
+        </div>
+
+        <div class="separator">:</div>
+
+        <div class="unit-group" id="sec-group">
+            <div class="flip-card" data-digit="s1">
+                <div class="top">0</div>
+                <div class="bottom">0</div>
+                <div class="leaf"><div class="leaf-front">0</div><div class="leaf-back">0</div></div>
+            </div>
+            <div class="flip-card" data-digit="s2">
+                <div class="top">0</div>
+                <div class="bottom">0</div>
+                <div class="leaf"><div class="leaf-front">0</div><div class="leaf-back">0</div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateDigit(id, newValue) {
+            const el = document.querySelector(`[data-digit="${id}"]`);
+            const top = el.querySelector('.top');
+            const bottom = el.querySelector('.bottom');
+            const leafFront = el.querySelector('.leaf-front');
+            const leafBack = el.querySelector('.leaf-back');
+
+            const currentValue = top.innerText;
+
+            if (newValue !== currentValue) {
+                // 1. Prepare the leaf
+                leafFront.innerText = currentValue;
+                leafBack.innerText = newValue;
+                
+                // 2. Prepare the background layers
+                // The top static layer shows the NEW value (hidden initially by leaf)
+                top.innerText = newValue;
+                // The bottom static layer shows the OLD value (until covered by flipping leaf)
+                bottom.innerText = currentValue;
+
+                // 3. Trigger Animation
+                el.classList.remove('flipping');
+                void el.offsetWidth; // Force reflow
+                el.classList.add('flipping');
+
+                // 4. Cleanup after animation finishes
+                setTimeout(() => {
+                    el.classList.remove('flipping');
+                    bottom.innerText = newValue;
+                }, 600); 
+            }
+        }
+
+        function getTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            updateDigit('h1', hours[0]);
+            updateDigit('h2', hours[1]);
+            updateDigit('m1', minutes[0]);
+            updateDigit('m2', minutes[1]);
+            updateDigit('s1', seconds[0]);
+            updateDigit('s2', seconds[1]);
+        }
+
+        // Initialize and sync
+        setInterval(getTime, 1000);
+        getTime();
+    </script>
+</body>
+</html>

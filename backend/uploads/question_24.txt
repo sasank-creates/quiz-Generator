@@ -1,0 +1,6 @@
+27. Which of these is the definition for packages in Python?
+a) A set of main modules
+b) A folder of python modules
+c) A number of files containing Python definitions and statements
+d) A set of programs making use of Python modules
+View Answer

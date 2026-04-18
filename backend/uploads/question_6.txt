@@ -1,0 +1,9 @@
+7. What will be the value of the following Python expression?
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/2/24
+print(4 + 3 % 5)
+a) 7
+b) 2
+c) 4
+d) 1
+View Answer

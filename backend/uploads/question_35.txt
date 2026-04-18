@@ -1,0 +1,9 @@
+38. What will be the output of the following Python program?
+z=set('abc')
+z.add('san')
+z.update(set(['p', 'q']))
+print(z)
+a) {‘a’, ‘c’, ‘c’, ‘p’, ‘q’, ‘s’, ‘a’, ‘n’}
+b) {‘abc’, ‘p’, ‘q’, ‘san’}
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/10/24

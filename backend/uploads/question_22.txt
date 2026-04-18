@@ -1,0 +1,6 @@
+25. Which of the following is not a core data type in Python programming?
+a) Tuples
+b) Lists
+c) Class
+d) Dictionary
+View Answer

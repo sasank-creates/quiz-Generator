@@ -1,0 +1,6 @@
+34. Which one of the following is not a keyword in Python language?
+a) pass
+b) eval
+c) assert
+d) nonlocal
+View Answer

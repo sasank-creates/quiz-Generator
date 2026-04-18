@@ -1,0 +1,10 @@
+30. What is the order of namespaces in which Python looks for an identifier?
+a) Python first searches the built-in namespace, then the global namespace and finally the local
+namespace
+b) Python first searches the built-in namespace, then the local namespace and finally the global
+namespace
+c) Python first searches the local namespace, then the global namespace and finally the built-in
+namespace
+d) Python first searches the global namespace, then the local namespace and finally the built-in
+namespace
+View Answer

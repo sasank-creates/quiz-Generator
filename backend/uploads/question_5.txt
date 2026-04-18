@@ -1,0 +1,13 @@
+5. Is Python code compiled or interpreted?
+a) Python code is both compiled and interpreted
+b) Python code is neither compiled nor interpreted
+c) Python code is only compiled
+d) Python code is only interpreted
+View Answer
+advertisement
+6. All keywords in Python are in _________
+a) Capitalized
+b) lower case
+c) UPPER CASE
+d) None of the mentioned
+View Answer

@@ -1,0 +1,9 @@
+18. What are the values of the following Python expressions?
+print(2**(3**2))
+print((2**3)**2)
+print(2**3**2)
+a) 512, 64, 512
+b) 512, 512, 512
+c) 64, 512, 64
+d) 64, 64, 64
+View Answer

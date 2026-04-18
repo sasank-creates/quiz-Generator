@@ -1,0 +1,7 @@
+26. What will be the output of the following Python expression if x=56.236?
+print("%.2f"%x)
+a) 56.236
+b) 56.23
+c) 56.0000
+d) 56.24
+View Answer

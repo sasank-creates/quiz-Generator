@@ -1,0 +1,9 @@
+28. What will be the output of the following Python function?
+print(len(["hello",2, 4, 6]))
+a) Error
+b) 6
+c) 4
+1/22/26, 9:04 PM1000 Python MCQ (Multiple Choice Questions) - Sanfoundry
+https://www.sanfoundry.com/1000-python-questions-answers/7/24
+d) 3
+View Answer
