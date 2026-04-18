@@ -3,14 +3,15 @@ const multer = require("multer");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const Quiz = require("./models/Quiz");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenAI } = require("@google/genai");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
 const app = express();
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const ai = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY
+});
 
 app.use(cors());
 app.use(express.json());
@@ -51,12 +52,12 @@ app.post("/upload", upload.single("file"), async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
-    // Free Tier Optimization: Cleanup old quizzes (>48h) on every upload
+    // Free Tier Optimization: Cleanup old quizzes (>48h)
     try {
       const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
       await Quiz.deleteMany({ createdAt: { $lt: fortyEightHoursAgo } });
     } catch (cleanupErr) {
-      console.error("Cleanup Error (non-blocking):", cleanupErr);
+      console.error("Cleanup Error:", cleanupErr);
     }
 
     console.log(`Processing file: ${req.file.originalname} (${req.file.mimetype})`);
@@ -78,17 +79,12 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     console.error("Upload process error:", err);
     res.status(500).json({
       error: "Failed to process the uploaded file.",
-      details: err.message
+      details: err.message || err
     });
   }
 });
 
 async function processFileWithGemini(base64Data, mimeType, retries = 2) {
-  const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
-    generationConfig: { responseMimeType: "application/json" }
-  });
-
   const prompt = `Extract all multiple choice questions from this document.
 Respond strictly with a JSON array of objects, using this exact schema for each object:
 {
@@ -108,20 +104,30 @@ Rules:
 
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
-      const result = await model.generateContent([
-        {
-          inlineData: {
-            data: base64Data,
-            mimeType: mimeType
+      const response = await ai.models.generateContent({
+        model: "gemini-1.5-flash",
+        contents: [
+          {
+            role: "user",
+            parts: [
+              {
+                inlineData: {
+                  data: base64Data,
+                  mimeType: mimeType
+                }
+              },
+              { text: prompt }
+            ]
           }
-        },
-        prompt
-      ]);
+        ],
+        config: {
+          responseMimeType: "application/json"
+        }
+      });
 
-      const response = await result.response;
-      const text = response.text();
+      const text = response.text || response.candidates?.[0]?.content?.parts?.[0]?.text;
+      if (!text) throw new Error("Empty response from AI");
 
-      // Clean up potential markdown if needed (though responseMimeType: "application/json" should handle it)
       const cleanedText = text.replace(/```json|```/g, "").trim();
       const parsed = JSON.parse(cleanedText);
 
@@ -131,7 +137,6 @@ Rules:
     } catch (err) {
       console.warn(`Attempt ${attempt} failed:`, err.message);
       if (attempt === retries) throw err;
-      // Wait before retry
       await new Promise(resolve => setTimeout(resolve, 2000 * attempt));
     }
   }
