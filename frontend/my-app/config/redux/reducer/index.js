@@ -1,4 +1,4 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { uploadFile } from "@/config/redux/action";
 
 const initialState = {
@@ -11,12 +11,12 @@ const fileSlice = createSlice({
   name: "file",
   initialState,
   reducers: {
-    reset:()=>{
-        return {
-            loading:false,
-            error:null,
-            latestUploadedId: null,
-        };
+    reset: () => {
+      return {
+        loading: false,
+        error: null,
+        latestUploadedId: null,
+      };
     }
   },
   extraReducers: (builder) => {
@@ -31,9 +31,18 @@ const fileSlice = createSlice({
       })
       .addCase(uploadFile.rejected, (state, action) => {
         state.loading = false;
-        state.error = "Server Error " + action.payload;
+        const payload = action.payload;
+        if (typeof payload === "string") {
+          state.error = payload;
+        } else if (payload?.error) {
+          state.error = payload.error;
+        } else if (payload?.message) {
+          state.error = payload.message;
+        } else {
+          state.error = "Something went wrong. Please try again.";
+        }
       });
   },
 });
-export const {reset}=fileSlice.actions;
+export const { reset } = fileSlice.actions;
 export default fileSlice.reducer;

@@ -10,13 +10,19 @@ export const uploadFile = createAsyncThunk(
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        timeout: 120000, // 2 minutes — Gemini AI processing can be slow
       });
       return response.data;
     } catch (error) {
+      if (error.code === "ECONNABORTED") {
+        return thunkAPI.rejectWithValue({
+          error: "Request timed out. The file may be too large or complex. Please try again.",
+        });
+      }
       return thunkAPI.rejectWithValue(
         error.response && error.response.data
           ? error.response.data
-          : error.message
+          : { error: error.message || "Network error. Please check your connection." }
       );
     }
   }
