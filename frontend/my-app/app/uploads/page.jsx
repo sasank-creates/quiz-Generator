@@ -103,14 +103,7 @@ function Uploads() {
 
           <div className={styles.text}>
             {loading
-              ? (
-                <div style={{ textAlign: "center" }}>
-                  <div>Uploading... Please wait a moment.</div>
-                  <div style={{ fontSize: "0.8rem", opacity: 0.7, marginTop: "5px" }}>
-                    (Server may take 30-60s to wake up on first load)
-                  </div>
-                </div>
-              )
+              ? <div> Uploading... Please wait a moment. </div>
               : isDragActive
                 ? <div>Release to upload files</div>
                 : <div>Drag and drop a PDF or Image here</div>}
